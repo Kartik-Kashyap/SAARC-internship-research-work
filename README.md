@@ -1,6 +1,6 @@
 # AI-Mediated Digital Citizenship in SAARC
 
-This repository contains research artifacts, interactive dashboards, and simulation systems developed as part of an academic internship focused on AI-mediated digital citizenship in South Asia.
+This repository contains research artifacts, interactive dashboards, visualization, and simulation systems developed as part of an academic internship carried out at SAARC focused on AI-mediated digital citizenship in South Asia.
 
 > [!NOTE]
 > README for each project is available in their respective folder.
