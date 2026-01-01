@@ -50,9 +50,9 @@ This project is architected for **Privacy, Security, and Accessibility**:
 
 I have separated the setup into modular guides to make it easier to troubleshoot:
 
-* **🦙 [Ollama Setup Guide](https://www.google.com/search?q=./ollama_setup.md):** How to install Ollama and pull the Llama 3.2 model.
-* **⚙️ [Backend Integration](https://www.google.com/search?q=./backend_setup.md):** How to start the Express server and connect the frontend.
-* **📘 [Implementation Details](https://www.google.com/search?q=./implementation_guide.md):** Deep dive into the research logic, metric calculations, and prompt engineering.
+* **🦙 [Ollama Setup Guide](ollama_setup.md):** How to install Ollama and pull the Llama 3.2 model.
+* **⚙️ [Backend Integration](backend_setup.md):** How to start the Express server and connect the frontend.
+* **📘 [Implementation Details](implementation_guide.md):** Deep dive into the research logic, metric calculations, and prompt engineering.
 
 ### 3. Quick Start (If you have Ollama running)
 
