@@ -1218,8 +1218,8 @@ The dashboard was designed to:
 
 \section{Access Links}
 \begin{itemize}
-  \item Live Deployment: \texttt{[Netlify URL]}
-  \item Source Code Repository: \texttt{[GitHub URL]}
+  \item Live Deployment: \texttt{[https://ai-mediated-digital-citizenship-data.netlify.app/]}
+  \item Source Code Repository: \texttt{[https://github.com/Kartik-Kashyap/SAARC-internship-research-work/tree/main/(web)AI-mediated-digital-citizenship-analytics-dashbaord]}
 \end{itemize}
 
 % \section{Screenshots}
@@ -1268,6 +1268,11 @@ While the dashboards offer valuable regional insight, they do not access proprie
 
 Together, the baseline dashboards and subsequent computational extensions demonstrate a layered research approach, progressing from descriptive mapping to mechanism-oriented analysis of AI-mediated digital citizenship.
 
+\section{Access Links}
+\begin{itemize}
+  \item Live Deployment: \texttt{[https://south-asian-youth-digital-landscape.netlify.app/]}
+  \item Source Code Repository: \texttt{[https://github.com/Kartik-Kashyap/SAARC-internship-research-work/tree/main/(web)SA_youth_digital_analysis_dashboard]}
+\end{itemize}
 
 
 
@@ -1335,8 +1340,8 @@ Comparative visualization highlights how algorithmic mechanisms accelerate and s
 \section{Access}
 
 \begin{itemize}
-    \item Live Demonstration: \texttt{[Deployment URL]}
-    \item Source Code Repository: \texttt{[GitHub URL]}
+    \item Live Demonstration: \texttt{[https://centrifuge-polarization-simulator.netlify.app/]}
+    \item Source Code Repository: \texttt{[https://github.com/Kartik-Kashyap/SAARC-internship-research-work/tree/main/(web)centrifuge_mathematical_echo_chamber_simulation]}
 \end{itemize}
 
 \section{Limitations}
@@ -1400,8 +1405,8 @@ The simulator has been intentionally designed to avoid persuasive optimization o
 As the system does not rely on external APIs or local AI models, it has been deployed as a static web application for public access and demonstration purposes.
 
 \begin{itemize}
-  \item \textbf{Live Demo (Netlify):} \url{https://<your-netlify-link>.netlify.app}
-  \item \textbf{Source Code (GitHub):} \url{https://github.com/<your-repo>/rule-based-feed-simulator}
+  \item \textbf{Live Demo (Netlify):} \url{https://social-media-echo-chamber-simulator.netlify.app/}
+  \item \textbf{Source Code (GitHub):} \href{https://github.com/Kartik-Kashyap/SAARC-internship-research-work/tree/main/(web)echo-chamber-hard-coded-simulator}{GitHub Repository}
 \end{itemize}
 
 The deployed version enables real-time interaction and visualization of metric changes, supporting its use in educational and policy-oriented contexts.
