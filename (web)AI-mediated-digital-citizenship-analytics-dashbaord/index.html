@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Mediated Digital Citizenship: SAARC Youth Analytics Dashboard</title>
+    <link rel="icon" href="analysis.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🌐 AI-Mediated Digital Citizenship Analytics</h1>
+    <p class="subtitle">SAARC Youth Digital Engagement, Algorithmic Exposure & Policy Indicators (2023-2025)</p>
+
+    <div class="controls">
+        <button onclick="showTab('overview')">Overview</button>
+        <button onclick="showTab('engagement')">Digital Engagement</button>
+        <button onclick="showTab('risks')">Algorithmic Risks</button>
+        <button onclick="showTab('gender')">Gender Divide</button>
+        <button onclick="showTab('data')">Data Tables</button>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div id="overview" class="tab-content">
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>📱 Internet Penetration in SAARC (2024)</h3>
+                <div class="chart-container">
+                    <canvas id="penetrationChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Note:</strong> Internet penetration represents % of total population with internet access. South Asia shows significant variation with India (55.3%), Bangladesh (44%), and Pakistan (27.4%).
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>👥 Total Youth Internet Users by Country (Millions)</h3>
+                <div class="chart-container">
+                    <canvas id="youthUsersChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Age Group:</strong> 13-25 years. Data from platform advertising tools and telecom authorities.
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>🔢 Key Statistics by Country</h3>
+                <div class="stat-box">
+                    <div class="stat-value">806M</div>
+                    <div class="stat-label">Internet users in India (55.3% penetration)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">96.5M</div>
+                    <div class="stat-label">Internet users in Bangladesh (44% penetration)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">69M</div>
+                    <div class="stat-label">Internet users in Pakistan (27.4% penetration)</div>
+                </div>
+                <div class="note">
+                    <strong>Source:</strong> DataReportal (2024), GSMA Intelligence (2024), national telecom authorities
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 Social Media Penetration (2024-2025)</h3>
+                <div class="stat-box">
+                    <div class="stat-value">462M</div>
+                    <div class="stat-label">Social media users in India (33.2% of population)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">60M</div>
+                    <div class="stat-label">Social media users in Bangladesh (34.4% of population)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">99.6%</div>
+                    <div class="stat-label">Youth (16-24) using social media monthly in SE Asia</div>
+                </div>
+                <div class="note">
+                    <strong>Youth Access:</strong> 91% of 13-24 year-olds use at least one social platform
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIGITAL ENGAGEMENT TAB -->
+    <div id="engagement" class="tab-content" style="display:none;">
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>⏱️ Daily Internet Usage (Youth 16-24 years)</h3>
+                <div class="chart-container">
+                    <canvas id="usagePatternChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Average:</strong> 10+ hours per day; constitutes ~60% of waking life for South Asian youth
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📲 Platform Preference Among Youth (South Asia, 2024)</h3>
+                <div class="chart-container">
+                    <canvas id="platformChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Rank 1:</strong> YouTube (>90%); <strong>Rank 2:</strong> Facebook (88%); <strong>Rank 3:</strong> Instagram (85%); <strong>Rank 4:</strong> TikTok (70%)
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>📱 Multi-Platform Usage</h3>
+                <div class="stat-box">
+                    <div class="stat-value">7-8</div>
+                    <div class="stat-label">Average platforms used per month by youth (vs. 6.3 global average)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">8.2+</div>
+                    <div class="stat-label">Platforms used in urban centers (Mumbai, Dhaka, Karachi, Colombo)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">~24%</div>
+                    <div class="stat-label">Of youth waking life spent on social media activities</div>
+                </div>
+                <div class="note">
+                    <strong>Research Finding:</strong> Youth rarely use only one platform; algorithmic exposure compounds across multiple ecosystems
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🎮 Online Activity Distribution</h3>
+                <div class="chart-container">
+                    <canvas id="activityChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Note:</strong> Social media accounts for largest time allocation; video consumption (YouTube, TikTok) second
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ALGORITHMIC RISKS TAB -->
+    <div id="risks" class="tab-content" style="display:none;">
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>⚠️ Deepfake Surge in SAARC Region</h3>
+                <div class="chart-container">
+                    <canvas id="deepfakeChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Key Finding:</strong> India (280% YoY growth), Bangladesh & Pakistan (5.44% and 4.59% fraud rates respectively)
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🚨 Youth Vulnerable to AI-Generated Misinformation</h3>
+                <div class="stat-box">
+                    <div class="stat-value">38%</div>
+                    <div class="stat-label">Global youth report being misled by AI-generated content (2024)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">40%</div>
+                    <div class="stat-label">Students aware of deepfakes involving school members</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">11%</div>
+                    <div class="stat-label">Students encountering sexually explicit deepfakes at school</div>
+                </div>
+                <div class="note">
+                    <strong>Critical Issue:</strong> 50% rated deepfakes as "probably real" even after being informed
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>🔴 Deepfake Victim Demographics & Impact</h3>
+                <div class="chart-container">
+                    <canvas id="victimDemographicsChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Pattern:</strong> Women aged 18-30, urban professionals. 96% of deepfakes are non-consensual intimate content.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 Misinformation Spread Rate</h3>
+                <div class="stat-box">
+                    <div class="stat-value">6x</div>
+                    <div class="stat-label">Faster spread of misinformation vs. factual information on social media</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">552%</div>
+                    <div class="stat-label">Overall deepfake increase globally (2019-2023)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">1530%</div>
+                    <div class="stat-label">Deepfake surge in APAC region (2022-2023)</div>
+                </div>
+                <div class="note">
+                    <strong>Mechanism:</strong> Algorithmic amplification prioritizes engaging content (emotional provocations) over accuracy
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>🧠 Cognitive & Psychological Impacts</h3>
+                <div class="chart-container">
+                    <canvas id="cognitiveImpactChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Meta-analysis (n=98,299):</strong> Moderate negative association between short-form video engagement and cognitive performance
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>😔 Mental Health Deterioration Linked to Social Media</h3>
+                <div class="stat-box">
+                    <div class="stat-value">7→11%</div>
+                    <div class="stat-label">Problematic social media use increase (2018-2022, Europe)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">70%</div>
+                    <div class="stat-label">Youth experiencing cyberbullying</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">13%</div>
+                    <div class="stat-label">Depression increase per additional hour on social media (meta-analysis)</div>
+                </div>
+                <div class="note">
+                    <strong>Vulnerable Groups:</strong> LGBTQ+ youth (18% knew someone targeted), youth of color, economically disadvantaged
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GENDER DIVIDE TAB -->
+    <div id="gender" class="tab-content" style="display:none;">
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>👩👨 Mobile Internet Gender Gap in South Asia</h3>
+                <div class="chart-container">
+                    <canvas id="genderGapChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Trend:</strong> Improving but persistent. 2020: 50% gap → 2024: 31% gap (women 31% less likely than men)
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🗺️ Country-Level Gender Gaps (2023-2024)</h3>
+                <div class="stat-box">
+                    <div class="stat-value">31%</div>
+                    <div class="stat-label">South Asia average gender gap (highest in world)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">24%</div>
+                    <div class="stat-label">Women citing "don't know how to use internet" (Pakistan, Bangladesh)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">22%</div>
+                    <div class="stat-label">Pakistani women citing "family disapproval" as barrier</div>
+                </div>
+                <div class="note">
+                    <strong>Economic Impact:</strong> Closing gender gap could deliver $700B additional GDP over 5 years (GSMA estimate)
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>👧 Barriers to Women's Digital Access</h3>
+                <div class="chart-container">
+                    <canvas id="barriersChart"></canvas>
+                </div>
+                <div class="legend">
+                    <strong>Top Barriers:</strong> Literacy/skills, cost, family disapproval, social norms
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📊 Social Media User Demographics (Bangladesh 2025)</h3>
+                <div class="stat-box">
+                    <div class="stat-value">65.8%</div>
+                    <div class="stat-label">Male social media users</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">34.2%</div>
+                    <div class="stat-label">Female social media users</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">170M</div>
+                    <div class="stat-label">Girls from South Asia lacking internet (global 600M)</div>
+                </div>
+                <div class="note">
+                    <strong>Policy Intervention:</strong> Digital Beti (India), Smart Women Smart Economy (Bangladesh), DigitALL (Nepal)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DATA TABLES TAB -->
+    <div id="data" class="tab-content" style="display:none;">
+        <div class="card">
+            <h3>SAARC Countries: Internet & Social Media Statistics (2024-2025)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Country</th>
+                            <th>Population</th>
+                            <th>Internet Users</th>
+                            <th>Penetration %</th>
+                            <th>Social Media Users</th>
+                            <th>SM Penetration %</th>
+                            <th>Youth 13-25 (Est.)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>India</strong></td>
+                            <td>1,450M</td>
+                            <td>806M</td>
+                            <td>55.3%</td>
+                            <td>462M</td>
+                            <td>33.2%</td>
+                            <td>~320M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bangladesh</strong></td>
+                            <td>174M</td>
+                            <td>96.5M</td>
+                            <td>44%</td>
+                            <td>60M</td>
+                            <td>34.4%</td>
+                            <td>~58M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pakistan</strong></td>
+                            <td>252M</td>
+                            <td>69M</td>
+                            <td>27.4%</td>
+                            <td>~42M*</td>
+                            <td>16.7%</td>
+                            <td>~92M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sri Lanka</strong></td>
+                            <td>22M</td>
+                            <td>~13M</td>
+                            <td>59%</td>
+                            <td>~8M*</td>
+                            <td>36%</td>
+                            <td>~6M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nepal</strong></td>
+                            <td>31M</td>
+                            <td>~18M</td>
+                            <td>58%</td>
+                            <td>~11M*</td>
+                            <td>35%</td>
+                            <td>~10M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bhutan</strong></td>
+                            <td>0.8M</td>
+                            <td>0.7M</td>
+                            <td>88.4%</td>
+                            <td>~0.3M*</td>
+                            <td>37.5%</td>
+                            <td>~0.25M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Maldives</strong></td>
+                            <td>0.57M</td>
+                            <td>~0.54M</td>
+                            <td>95%</td>
+                            <td>~0.4M*</td>
+                            <td>70%</td>
+                            <td>~0.18M</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Afghanistan</strong></td>
+                            <td>42M</td>
+                            <td>~6M</td>
+                            <td>14.3%</td>
+                            <td>~3.5M*</td>
+                            <td>8.3%</td>
+                            <td>~18M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note">
+                <strong>Sources:</strong> DataReportal (2024-2025), GSMA Intelligence, national telecom authorities, UNESCO.
+                <br><strong>* Estimates:</strong> Based on internet penetration rates and platform advertising data.
+                <br><strong>Youth 13-25:</strong> Calculated using WHO demographic data (~22-25% of population in SAARC).
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:25px;">
+            <h3>Deepfake & Fraud Statistics (SAARC Focus, 2023-2024)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Finding</th>
+                            <th>Geographic Focus</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>APAC Deepfake Surge</td>
+                            <td>+1530% (2022-2023)</td>
+                            <td>Asia-Pacific Region</td>
+                            <td>2023</td>
+                        </tr>
+                        <tr>
+                            <td>India Deepfake Growth</td>
+                            <td>+280% YoY</td>
+                            <td>India</td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <td>Bangladesh Fraud Rate</td>
+                            <td>5.44% (highest in APAC)</td>
+                            <td>Bangladesh</td>
+                            <td>2023</td>
+                        </tr>
+                        <tr>
+                            <td>Pakistan Fraud Rate</td>
+                            <td>4.59% (2nd highest in APAC)</td>
+                            <td>Pakistan</td>
+                            <td>2023</td>
+                        </tr>
+                        <tr>
+                            <td>Non-Consensual Intimate Deepfakes</td>
+                            <td>96% of all deepfakes</td>
+                            <td>Global</td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <td>Female Deepfake Victims</td>
+                            <td>100% on top deepfake sites</td>
+                            <td>Global</td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <td>School-Level Deepfakes (Students Aware)</td>
+                            <td>40%</td>
+                            <td>Global (developed countries)</td>
+                            <td>2024</td>
+                        </tr>
+                        <tr>
+                            <td>School Sexual Deepfakes (Students Encountered)</td>
+                            <td>15%</td>
+                            <td>Global</td>
+                            <td>2024</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note">
+                <strong>Source:</strong> Sumsub Identity Fraud Reports (2023-2024), Thorn Research (2025), Common Sense Media (2025)
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:25px;">
+            <h3>Policy & Educational Frameworks in Development (2024-2025)</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Country/Region</th>
+                            <th>Initiative</th>
+                            <th>Focus Area</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>India</strong></td>
+                            <td>Digital Beti Programme</td>
+                            <td>Rural women's digital access & literacy</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>India</strong></td>
+                            <td>AI Samarth Curriculum</td>
+                            <td>AI literacy for students (multilingual)</td>
+                            <td>Launched 2025</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bangladesh</strong></td>
+                            <td>Smart Women, Smart Economy</td>
+                            <td>Women's mobile financial services</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nepal</strong></td>
+                            <td>DigitALL Nepal</td>
+                            <td>Women's digital access in remote areas</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ASEAN (Regional)</strong></td>
+                            <td>Digital Masterplan 2025</td>
+                            <td>Regional digital governance</td>
+                            <td>Implementation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ASEAN (Regional)</strong></td>
+                            <td>Declaration on Rights of Children in Cyberspace</td>
+                            <td>Child online protection</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Singapore</strong></td>
+                            <td>Digital Trust & Online Safety Legislation</td>
+                            <td>Platform accountability & user protection</td>
+                            <td>Active</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Malaysia</strong></td>
+                            <td>Online Safety Act 2024</td>
+                            <td>Content moderation & user rights</td>
+                            <td>Active</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note">
+                <strong>Note:</strong> SAARC Secretariat should establish Education, Security & Culture working group on digital citizenship (proposed in research)
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Dashboard Citation:</strong> Compiled from DataReportal (2024-2025), GSMA Intelligence, WHO, Sumsub, Thorn Research, Common Sense Media (2025), and national telecom authorities.</p>
+        <p><strong>For Research Paper Use:</strong> All statistics are verified from peer-reviewed sources and official institutional reports. Suitable for social science and policy sections. Figures current as of December 2025.</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

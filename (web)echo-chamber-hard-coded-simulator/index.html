@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Algo Simulator - AI-Mediated Digital Citizenship Lab</title>
+    <meta name="description" content="Interactive educational tool demonstrating how AI algorithms shape youth digital citizenship in SAARC nations. Research by Kartik Kashyap for SAARC Internship Programme.">
+    <meta name="keywords" content="AI, digital citizenship, SAARC, youth, algorithms, echo chambers, social media, education">
+    <meta name="author" content="Kartik Kashyap">
+    <link rel="icon" href="echo.png" type="image/png">
+    
+    <!-- React and Babel -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'YOUR-GA-ID');
+</script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        #root {
+            min-height: 100vh;
+        }
+        * {
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Lucide icon components as React components
+        // const Brain = (props) => React.createElement('svg', {
+        //     ...props,
+        //     width: props.width || 24,
+        //     height: props.height || 24,
+        //     viewBox: '0 0 24 24',
+        //     fill: 'none',
+        //     stroke: 'currentColor',
+        //     strokeWidth: 2,
+        //     strokeLinecap: 'round',
+        //     strokeLinejoin: 'round'
+        // }, 
+        //     React.createElement('path', { d: 'M12 5a3 3 0 1 0-5.997.142 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588 4 4 0 0 0 7.636 2.106 3 3 0 0 0 .164-1.857 3 3 0 0 0 .357-1.21 3 3 0 0 1 2.235-2.235 3 3 0 0 1 1.21-.357 3 3 0 0 0 1.857-.164 4 4 0 0 0 2.106-7.636 4 4 0 0 0-6.588-.556 4 4 0 0 0-5.77-2.526A3 3 0 0 0 12 5Z' }),
+        //     React.createElement('path', { d: 'M12 5v14' })
+        // );
+
+        const Brain = (props) => React.createElement('svg', {
+            ...props,
+            width: props.width || 24,
+            height: props.height || 24,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round'
+        }, 
+            React.createElement('circle', { cx: '12', cy: '12', r: '2', fill: 'currentColor' }),
+            React.createElement('circle', { cx: '12', cy: '12', r: '5' }),
+            React.createElement('circle', { cx: '12', cy: '12', r: '8' }),
+            React.createElement('circle', { cx: '12', cy: '12', r: '11' }),
+            React.createElement('path', { d: 'M12 7v10' }),
+            React.createElement('path', { d: 'M7 12h10' }),
+            React.createElement('circle', { cx: '5', cy: '12', r: '0.8', fill: 'currentColor' }),
+            React.createElement('circle', { cx: '19', cy: '12', r: '0.8', fill: 'currentColor' }),
+            React.createElement('circle', { cx: '12', cy: '5', r: '0.8', fill: 'currentColor' }),
+            React.createElement('circle', { cx: '12', cy: '19', r: '0.8', fill: 'currentColor' })
+        );
+        
+        const Eye = (props) => React.createElement('svg', {
+            ...props,
+            width: props.width || 24,
+            height: props.height || 24,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+        },
+            React.createElement('path', { d: 'M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z' }),
+            React.createElement('circle', { cx: 12, cy: 12, r: 3 })
+        );
+        
+        const TrendingUp = (props) => React.createElement('svg', {
+            ...props,
+            width: props.width || 24,
+            height: props.height || 24,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+        },
+            React.createElement('polyline', { points: '22 7 13.5 15.5 8.5 10.5 2 17' }),
+            React.createElement('polyline', { points: '16 7 22 7 22 13' })
+        );
+        
+        const AlertTriangle = (props) => React.createElement('svg', {
+            ...props,
+            width: props.width || 24,
+            height: props.height || 24,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+        },
+            React.createElement('path', { d: 'm21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z' }),
+            React.createElement('path', { d: 'M12 9v4' }),
+            React.createElement('path', { d: 'M12 17h.01' })
+        );
+        
+        const Award = (props) => React.createElement('svg', {
+            ...props,
+            width: props.width || 24,
+            height: props.height || 24,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+        },
+            React.createElement('circle', { cx: 12, cy: 8, r: 6 }),
+            React.createElement('path', { d: 'M15.477 12.89 17 22l-5-3-5 3 1.523-9.11' })
+        );
+        
+        const RefreshCw = (props) => React.createElement('svg', {
+            ...props,
+            width: props.width || 24,
+            height: props.height || 24,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+        },
+            React.createElement('path', { d: 'M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8' }),
+            React.createElement('path', { d: 'M21 3v5h-5' }),
+            React.createElement('path', { d: 'M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16' }),
+            React.createElement('path', { d: 'M8 16H3v5' })
+        );
+        
+        const BookOpen = (props) => React.createElement('svg', {
+            ...props,
+            width: props.width || 24,
+            height: props.height || 24,
+            viewBox: '0 0 24 24',
+            fill: 'none',
+            stroke: 'currentColor',
+            strokeWidth: 2,
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+        },
+            React.createElement('path', { d: 'M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z' }),
+            React.createElement('path', { d: 'M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z' })
+        );
+
+        // NOTE: This file contains the STATIC version - no API calls needed!
+        // It works 100% client-side and will run forever for free on Netlify.
+        // 
+        // To deploy: Simply drag this file to https://app.netlify.com/drop
+        //
+        // Research by: Kartik Kashyap
+        // Topic: AI-Mediated Digital Citizenship Among Youth in SAARC Nations
+        // SAARC Internship Programme
+
+        // [Component code will be inserted here - for now, this is a template]
+        // Copy the full component from echo-chamber-simulator-static.jsx into this script tag
+
+                // NOTE: This file contains the STATIC version - no API calls needed!
+        // It works 100% client-side and will run forever for free on Netlify.
+        // 
+        // To deploy: Simply drag this file to https://app.netlify.com/drop
+        //
+        // Research by: Kartik Kashyap
+        // Topic: AI-Mediated Digital Citizenship Among Youth in SAARC Nations
+        // SAARC Internship Programme
+
+        const { useState, useEffect } = React;
+
+        const EchoChamberSimulator = () => {
+          const [started, setStarted] = useState(false);
+          const [posts, setPosts] = useState([]);
+          const [metrics, setMetrics] = useState({
+            attentionSpan: 100,
+            polarizationIndex: 0,
+            criticalThinking: 100,
+            diversityScore: 100
+          });
+          const [interactions, setInteractions] = useState([]);
+          const [showIntervention, setShowIntervention] = useState(false);
+          const [interventionMessage, setInterventionMessage] = useState('');
+          const [showReport, setShowReport] = useState(false);
+          const [feedStage, setFeedStage] = useState(1);
+
+          // Comprehensive content library organized by type
+          const contentLibrary = {
+            polarizing: [
+              {
+                type: 'polarizing',
+                author: 'NationalVoice_IN',
+                content: '🚨 BREAKING: Another border incident reported! They continue to test our patience. How long will we tolerate this aggression? Time to show strength! 🇮🇳 #StandStrong #NeverForget',
+                engagement: '2.3K reactions • 890 shares',
+                impact: { attention: -8, polarization: +15, critical: -10, diversity: -12 }
+              },
+              {
+                type: 'polarizing',
+                author: 'PakistanFirst_PK',
+                content: '🇵🇰 Once again our sovereignty is being challenged! The world needs to see who the real aggressor is. We must unite and respond! #DefendPakistan #Unity',
+                engagement: '4.1K reactions • 1.5K shares',
+                impact: { attention: -10, polarization: +18, critical: -12, diversity: -15 }
+              },
+              {
+                type: 'polarizing',
+                author: 'BangladeshiPride',
+                content: '🇧🇩 SHAME! Foreign interference in our internal matters again. When will they learn to respect our independence? Share if you agree! #Bangladesh #Sovereignty',
+                engagement: '1.8K reactions • 567 shares',
+                impact: { attention: -7, polarization: +14, critical: -11, diversity: -13 }
+              },
+              {
+                type: 'polarizing',
+                author: 'TruePatriot_LK',
+                content: '🇱🇰 Our economic crisis is being exploited by outsiders! Time to reclaim our dignity and reject foreign dictates. Sri Lanka first! #SriLanka #Independence',
+                engagement: '3.2K reactions • 980 shares',
+                impact: { attention: -9, polarization: +16, critical: -13, diversity: -14 }
+              },
+              {
+                type: 'polarizing',
+                author: 'NepalStrong',
+                content: '🇳🇵 Enough is enough! Our borders, our rules! No more interference from larger neighbors. Time to stand firm! #Nepal #Sovereignty',
+                engagement: '2.7K reactions • 745 shares',
+                impact: { attention: -8, polarization: +15, critical: -10, diversity: -12 }
+              }
+            ],
+            shallow: [
+              {
+                type: 'shallow',
+                author: 'ViralClips_SA',
+                content: '😂 You won\'t BELIEVE what this street vendor did when customer tried to bargain! Watch till the END! 🤯 #Viral #MustWatch',
+                engagement: '15K views • 3.2K likes',
+                impact: { attention: -12, polarization: 0, critical: -8, diversity: -3 }
+              },
+              {
+                type: 'shallow',
+                author: 'QuickFix_IN',
+                content: '😱 This 10-second life hack will CHANGE YOUR LIFE! You won\'t believe #7! My mind is BLOWN 🤯 #LifeHacks #Trending',
+                engagement: '28K views • 6.4K likes',
+                impact: { attention: -15, polarization: 0, critical: -10, diversity: -2 }
+              },
+              {
+                type: 'shallow',
+                author: 'BuzzContent_BD',
+                content: '🔥 Top 5 things only DESI people understand! Number 3 will make you CRY with laughter! 😭😂 #Desi #Relatable',
+                engagement: '19K views • 4.1K likes',
+                impact: { attention: -13, polarization: 0, critical: -9, diversity: -3 }
+              },
+              {
+                type: 'shallow',
+                author: 'TrendingNow_PK',
+                content: '⚡ SHOCKING discovery! This simple trick your grandmother knew saves THOUSANDS! Click to find out! #Shocking #SaveMoney',
+                engagement: '22K views • 5.8K likes',
+                impact: { attention: -14, polarization: 0, critical: -11, diversity: -2 }
+              }
+            ],
+            educational: [
+              {
+                type: 'educational',
+                author: 'SouthAsiaInsights',
+                content: '📚 Fascinating analysis: How algorithmic feeds create filter bubbles and limit exposure to diverse perspectives. New IIT Delhi research explores cognitive impacts. Thread 🧵',
+                engagement: '342 thoughtful replies • 567 shares',
+                impact: { attention: +10, polarization: -8, critical: +15, diversity: +10 }
+              },
+              {
+                type: 'educational',
+                author: 'PolicyResearch_SA',
+                content: '🎓 Important study: Youth in SAARC nations spend avg 10+ hours daily on social media. Research shows correlation with attention span reduction and increased polarization. Full paper linked.',
+                engagement: '289 thoughtful replies • 445 shares',
+                impact: { attention: +12, polarization: -10, critical: +18, diversity: +12 }
+              },
+              {
+                type: 'educational',
+                author: 'DigitalLiteracy_BD',
+                content: '💡 Understanding deepfakes: A comprehensive guide on how to identify AI-generated media and protect yourself from misinformation. Essential reading for everyone. 🧠',
+                engagement: '412 thoughtful replies • 678 shares',
+                impact: { attention: +11, polarization: -7, critical: +16, diversity: +9 }
+              },
+              {
+                type: 'educational',
+                author: 'CriticalThinking_IN',
+                content: '🔍 Media literacy thread: Why do we believe what we see online? Exploring cognitive biases and how to develop critical evaluation skills. Share with students! 📖',
+                engagement: '378 thoughtful replies • 512 shares',
+                impact: { attention: +13, polarization: -9, critical: +17, diversity: +11 }
+              }
+            ],
+            misinformation: [
+              {
+                type: 'misinformation',
+                author: 'TruthSeeker_BD',
+                content: '⚠️ URGENT: Government hiding vaccine side effects data! My cousin\'s friend had severe reaction and doctors are SILENT! They don\'t want you to know! SHARE before deleted! 🔄',
+                engagement: '5.8K shares • 1.2K comments',
+                impact: { attention: -5, polarization: +10, critical: -15, diversity: -8 },
+                isMisinfo: true
+              },
+              {
+                type: 'misinformation',
+                author: 'WakeUpPeople_PK',
+                content: '🚨 EXPOSED: Secret meeting between foreign agencies planning to destabilize our economy! Insider leaked documents! MSM won\'t cover this! SHARE EVERYWHERE! ⚠️',
+                engagement: '7.2K shares • 2.1K comments',
+                impact: { attention: -6, polarization: +12, critical: -16, diversity: -10 },
+                isMisinfo: true
+              },
+              {
+                type: 'misinformation',
+                author: 'RealNews_LK',
+                content: '⚡ BREAKING: Celebrity death covered up by media! Hospital staff confirms but authorities threatening silence! Read before they delete! #Truth',
+                engagement: '9.1K shares • 3.4K comments',
+                impact: { attention: -7, polarization: +11, critical: -17, diversity: -9 },
+                isMisinfo: true
+              }
+            ],
+            balanced: [
+              {
+                type: 'balanced',
+                author: 'RegionalDialogue',
+                content: '🤝 Encouraging discussion at SAARC Youth Forum: Young leaders from India, Pakistan, and Bangladesh finding common ground on climate cooperation. Despite political tensions, youth committed to regional progress.',
+                engagement: '892 likes • 234 thoughtful shares',
+                impact: { attention: +5, polarization: -12, critical: +8, diversity: +15 }
+              },
+              {
+                type: 'balanced',
+                author: 'SAARCCooperation',
+                content: '🌏 Interesting perspective: How trade and cultural exchange between SAARC nations could benefit all economies. Economists from multiple countries weigh in with nuanced analysis.',
+                engagement: '1.1K likes • 312 thoughtful shares',
+                impact: { attention: +6, polarization: -13, critical: +9, diversity: +16 }
+              },
+              {
+                type: 'balanced',
+                author: 'CrossBorderVoices',
+                content: '💬 Student exchange programs between India-Pakistan showing promising results. Participants report changed perspectives and new friendships. Multiple viewpoints in comments.',
+                engagement: '765 likes • 189 thoughtful shares',
+                impact: { attention: +7, polarization: -14, critical: +10, diversity: +17 }
+              },
+              {
+                type: 'balanced',
+                author: 'RegionalPerspectives',
+                content: '📊 Data-driven analysis: Comparing economic policies across SAARC nations. What works, what doesn\'t, and why context matters. Nuanced discussion without partisan bias.',
+                engagement: '934 likes • 267 thoughtful shares',
+                impact: { attention: +8, polarization: -11, critical: +11, diversity: +14 }
+              }
+            ],
+            dopamine: [
+              {
+                type: 'dopamine',
+                author: 'DailyDose_Viral',
+                content: '🔥 This 5-second dance trend is TAKING OVER! Everyone\'s doing it! Can you? Try NOW! 💃🕺 #Viral #Trending #DanceChallenge',
+                engagement: '42K views • 8.7K likes',
+                impact: { attention: -15, polarization: 0, critical: -5, diversity: -2 }
+              },
+              {
+                type: 'dopamine',
+                author: 'InstaViral_SA',
+                content: '😂😂😂 When you see your exam results... This 3-second video is TOO RELATABLE! Tag your friends! 🤣 #Memes #StudentLife',
+                engagement: '56K views • 12.3K likes',
+                impact: { attention: -16, polarization: 0, critical: -6, diversity: -1 }
+              },
+              {
+                type: 'dopamine',
+                author: 'QuickLaughs_PK',
+                content: '🤪 POV: You\'re trying to explain something to your parents... Wait for it! 😭 #Comedy #Relatable #Shorts',
+                engagement: '38K views • 7.9K likes',
+                impact: { attention: -17, polarization: 0, critical: -4, diversity: -2 }
+              },
+              {
+                type: 'dopamine',
+                author: 'TrendAlert_BD',
+                content: '⚡ NEW FILTER IS CRAZY! Try this NOW before it\'s gone! Your face will look INSANE! 🤯 #Filter #Trending #MustTry',
+                engagement: '64K views • 15.2K likes',
+                impact: { attention: -18, polarization: 0, critical: -5, diversity: -1 }
+              }
+            ]
+          };
+
+          const startSimulation = () => {
+            setStarted(true);
+            // Initialize with a diverse mix of content
+            const initialPosts = [
+              ...shuffleArray(contentLibrary.polarizing).slice(0, 1),
+              ...shuffleArray(contentLibrary.shallow).slice(0, 1),
+              ...shuffleArray(contentLibrary.educational).slice(0, 1),
+              ...shuffleArray(contentLibrary.misinformation).slice(0, 1),
+              ...shuffleArray(contentLibrary.balanced).slice(0, 1),
+              ...shuffleArray(contentLibrary.dopamine).slice(0, 1)
+            ];
+            setPosts(shuffleArray(initialPosts).map((post, idx) => ({ ...post, id: idx + 1 })));
+          };
+
+          const shuffleArray = (array) => {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+          };
+
+          const handlePostClick = (post) => {
+            // Record interaction
+            const newInteractions = [...interactions, { 
+              postId: post.id, 
+              type: post.type, 
+              timestamp: Date.now() 
+            }];
+            setInteractions(newInteractions);
+
+            // Update metrics based on post impact
+            setMetrics(prev => ({
+              attentionSpan: Math.max(0, Math.min(100, prev.attentionSpan + post.impact.attention)),
+              polarizationIndex: Math.max(0, Math.min(100, prev.polarizationIndex + post.impact.polarization)),
+              criticalThinking: Math.max(0, Math.min(100, prev.criticalThinking + post.impact.critical)),
+              diversityScore: Math.max(0, Math.min(100, prev.diversityScore + post.impact.diversity))
+            }));
+
+            // Mark post as read
+            setPosts(prev => prev.map(p => p.id === post.id ? { ...p, read: true } : p));
+
+            // Check for interventions
+            if (newInteractions.length >= 3) {
+              checkForIntervention(newInteractions);
+            }
+
+            // Generate new content after certain interactions
+            if (newInteractions.length === 4 || newInteractions.length === 7 || newInteractions.length === 10) {
+              generateNewPosts(newInteractions);
+            }
+
+            // Show report after 12 interactions
+            if (newInteractions.length >= 12) {
+              setShowReport(true);
+            }
+          };
+
+          const checkForIntervention = (interactions) => {
+            const recentInteractions = interactions.slice(-3);
+            const polarizingCount = recentInteractions.filter(i => 
+              posts.find(p => p.id === i.postId)?.type === 'polarizing'
+            ).length;
+            
+            const shallowCount = recentInteractions.filter(i => {
+              const postType = posts.find(p => p.id === i.postId)?.type;
+              return postType === 'shallow' || postType === 'dopamine';
+            }).length;
+
+            const missinfoCount = recentInteractions.filter(i => 
+              posts.find(p => p.id === i.postId)?.type === 'misinformation'
+            ).length;
+
+            if (polarizingCount >= 2 && !showIntervention) {
+              setInterventionMessage('⚠️ Echo Chamber Alert: You\'ve consumed multiple polarizing posts in a row. Your feed is now being algorithmically optimized for engagement, not truth. The system has learned you prefer emotional content and will show you MORE of it. Try seeking diverse perspectives.');
+              setShowIntervention(true);
+              setTimeout(() => setShowIntervention(false), 6000);
+            } else if (shallowCount >= 2 && !showIntervention) {
+              setInterventionMessage('🧠 Attention Pattern Notice: You\'re consuming high-dopamine, low-depth content. Research shows this pattern is associated with reduced attention span and critical thinking capacity. Consider engaging with longer-form, thoughtful content.');
+              setShowIntervention(true);
+              setTimeout(() => setShowIntervention(false), 6000);
+            } else if (missinfoCount >= 1 && !showIntervention) {
+              setInterventionMessage('🚨 Misinformation Warning: You just engaged with unverified content. Always check sources, look for corroboration, and be skeptical of sensational claims. Your critical thinking score has decreased.');
+              setShowIntervention(true);
+              setTimeout(() => setShowIntervention(false), 6000);
+            }
+          };
+
+          const generateNewPosts = (userInteractions) => {
+            setFeedStage(prev => prev + 1);
+            
+            // Analyze user behavior pattern - what type of content do they prefer?
+            const typeCount = userInteractions.reduce((acc, interaction) => {
+              const postType = posts.find(p => p.id === interaction.postId)?.type;
+              if (postType) {
+                acc[postType] = (acc[postType] || 0) + 1;
+              }
+              return acc;
+            }, {});
+
+            // Find dominant content types
+            const sortedTypes = Object.entries(typeCount).sort((a, b) => b[1] - a[1]);
+            const dominantType = sortedTypes[0]?.[0] || 'balanced';
+            const secondaryType = sortedTypes[1]?.[0] || 'shallow';
+
+            // Algorithmically personalize: show MORE of what they clicked (70% match their preference)
+            const newPosts = [];
+            const numPosts = 4;
+            
+            // 70% of content matches their behavior
+            const matchingCount = Math.ceil(numPosts * 0.7);
+            const diverseCount = numPosts - matchingCount;
+
+            // Add matching content (what they like)
+            if (contentLibrary[dominantType]) {
+              const availableMatching = contentLibrary[dominantType].filter(
+                post => !posts.some(p => p.author === post.author && p.content === post.content)
+              );
+              newPosts.push(...shuffleArray(availableMatching).slice(0, matchingCount));
+            }
+
+            // Add some diverse content (to prevent total echo chamber, but less)
+            if (contentLibrary[secondaryType] && newPosts.length < numPosts) {
+              const availableDiverse = contentLibrary[secondaryType].filter(
+                post => !posts.some(p => p.author === post.author && p.content === post.content)
+              );
+              newPosts.push(...shuffleArray(availableDiverse).slice(0, diverseCount));
+            }
+
+            // If we still don't have enough, fill with random types
+            if (newPosts.length < numPosts) {
+              const allTypes = Object.keys(contentLibrary);
+              const randomType = allTypes[Math.floor(Math.random() * allTypes.length)];
+              const availableRandom = contentLibrary[randomType].filter(
+                post => !posts.some(p => p.author === post.author && p.content === post.content)
+              );
+              newPosts.push(...shuffleArray(availableRandom).slice(0, numPosts - newPosts.length));
+            }
+
+            // Add new posts with unique IDs
+            const startId = posts.length + 1;
+            const postsToAdd = newPosts.map((post, idx) => ({
+              ...post,
+              id: startId + idx
+            }));
+
+            setPosts(prev => [...prev, ...postsToAdd]);
+          };
+
+          const getMetricColor = (value, inverse = false) => {
+            if (inverse) value = 100 - value;
+            if (value >= 70) return 'text-green-600';
+            if (value >= 40) return 'text-yellow-600';
+            return 'text-red-600';
+          };
+
+          const getMetricBgColor = (value, inverse = false) => {
+            if (inverse) value = 100 - value;
+            if (value >= 70) return 'bg-green-500';
+            if (value >= 40) return 'bg-yellow-500';
+            return 'bg-red-500';
+          };
+
+          const calculateGrade = () => {
+            const avg = (
+              metrics.attentionSpan + 
+              (100 - metrics.polarizationIndex) + 
+              metrics.criticalThinking + 
+              metrics.diversityScore
+            ) / 4;
+
+            if (avg >= 80) return { grade: 'A', label: 'Excellent Digital Citizen', color: 'text-green-600' };
+            if (avg >= 60) return { grade: 'B', label: 'Good Digital Awareness', color: 'text-blue-600' };
+            if (avg >= 40) return { grade: 'C', label: 'Vulnerable to Manipulation', color: 'text-yellow-600' };
+            return { grade: 'D', label: 'High Risk - Needs Intervention', color: 'text-red-600' };
+          };
+
+          const resetSimulation = () => {
+            setStarted(false);
+            setPosts([]);
+            setMetrics({
+              attentionSpan: 100,
+              polarizationIndex: 0,
+              criticalThinking: 100,
+              diversityScore: 100
+            });
+            setInteractions([]);
+            setShowReport(false);
+            setFeedStage(1);
+            setShowIntervention(false);
+          };
+
+          if (!started) {
+            return (
+              <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4">
+                <div className="max-w-3xl bg-white rounded-2xl shadow-2xl p-8">
+                  <div className="text-center">
+                    <Brain className="w-16 h-16 mx-auto mb-4 text-purple-600" />
+                    <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                      Social Media Echo Chamber Simulator
+                    </h1>
+                    <p className="text-lg text-gray-600 mb-2">
+                        Explore how algorithms shape your digital experience <br></br>{'(hard coded version)'}
+                    </p>
+                    <p className="text-lg text-gray-600 mb-2">
+                      AI-Mediated Digital Citizenship Lab
+                    </p>
+                    <p className="text-sm text-gray-500 mb-6">
+                      Research Tool for SAARC Youth Digital Behavior Analysis
+                    </p>
+                    
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 text-left">
+                      <p className="text-sm text-yellow-800">
+                        <strong>⚠️ Educational Simulation:</strong> This tool demonstrates how algorithms shape your digital experience by tracking what you click and adapting the content you see - just like real social media platforms. Your choices create a personalized feedback loop.
+                      </p>
+                    </div>
+
+                    <div className="text-left space-y-4 mb-8">
+                      <h3 className="font-semibold text-gray-900 flex items-center">
+                        <Eye className="w-5 h-5 mr-2 text-blue-600" />
+                        How It Works:
+                      </h3>
+                      <ul className="space-y-2 text-gray-700 text-sm ml-7">
+                        <li>• Click on posts to "consume" content</li>
+                        <li>• Watch your cognitive metrics change in real-time</li>
+                        <li>• The algorithm learns your preferences and adapts your feed</li>
+                        <li>• Experience how echo chambers form naturally</li>
+                        <li>• Receive educational interventions when at risk</li>
+                        <li>• Get your Digital Citizenship Report Card</li>
+                      </ul>
+
+                      <h3 className="font-semibold text-gray-900 flex items-center mt-6">
+                        <TrendingUp className="w-5 h-5 mr-2 text-green-600" />
+                        Metrics Tracked:
+                      </h3>
+                      <ul className="space-y-2 text-gray-700 text-sm ml-7">
+                        <li>• <strong>Attention Span:</strong> Capacity for deep focus and sustained concentration</li>
+                        <li>• <strong>Polarization Index:</strong> How extreme your information diet becomes</li>
+                        <li>• <strong>Critical Thinking:</strong> Ability to evaluate information objectively</li>
+                        <li>• <strong>Diversity Score:</strong> Exposure to different perspectives</li>
+                      </ul>
+                    </div>
+
+                    <button
+                      onClick={startSimulation}
+                      className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-blue-700 transition shadow-lg"
+                    >
+                      Start Simulation
+                    </button>
+
+                    <div className="mt-6 text-center">
+                      <p className="text-xs text-gray-500">
+                        Research by Kartik Kashyap • SAARC Internship Programme
+                      </p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        AI-Mediated Digital Citizenship Among Youth in SAARC Nations
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
+          if (showReport) {
+            const { grade, label, color } = calculateGrade();
+            const avgScore = (
+              metrics.attentionSpan + 
+              (100 - metrics.polarizationIndex) + 
+              metrics.criticalThinking + 
+              metrics.diversityScore
+            ) / 4;
+
+            // Analyze behavior pattern
+            const typeCount = interactions.reduce((acc, interaction) => {
+              const post = posts.find(p => p.id === interaction.postId);
+              if (post) {
+                acc[post.type] = (acc[post.type] || 0) + 1;
+              }
+              return acc;
+            }, {});
+
+            const mostConsumed = Object.entries(typeCount).sort((a, b) => b[1] - a[1])[0];
+
+            return (
+              <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 p-4 flex items-center justify-center">
+                <div className="max-w-3xl w-full bg-white rounded-2xl shadow-2xl p-8">
+                  <div className="text-center mb-8">
+                    <Award className="w-20 h-20 mx-auto mb-4 text-yellow-500" />
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                      Digital Citizenship Report Card
+                    </h2>
+                    <div className={`text-6xl font-bold ${color} my-4`}>{grade}</div>
+                    <p className="text-xl text-gray-700">{label}</p>
+                    <p className="text-sm text-gray-500 mt-2">
+                      Overall Score: {avgScore.toFixed(1)}%
+                    </p>
+                  </div>
+
+                  <div className="space-y-6 mb-8">
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="font-semibold">Attention Span</span>
+                        <span className={`font-bold ${getMetricColor(metrics.attentionSpan)}`}>
+                          {metrics.attentionSpan.toFixed(0)}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div 
+                          className={`h-3 rounded-full transition-all ${getMetricBgColor(metrics.attentionSpan)}`}
+                          style={{ width: `${metrics.attentionSpan}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-gray-600 mt-1">
+                        {metrics.attentionSpan >= 70 ? 'Excellent capacity for deep focus' : 
+                         metrics.attentionSpan >= 40 ? 'Moderate attention - vulnerable to distraction' :
+                         'Severely reduced attention span - high-risk pattern'}
+                      </p>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="font-semibold">Polarization Resistance</span>
+                        <span className={`font-bold ${getMetricColor(100 - metrics.polarizationIndex)}`}>
+                          {(100 - metrics.polarizationIndex).toFixed(0)}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div 
+                          className={`h-3 rounded-full transition-all ${getMetricBgColor(100 - metrics.polarizationIndex)}`}
+                          style={{ width: `${100 - metrics.polarizationIndex}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-gray-600 mt-1">
+                        {metrics.polarizationIndex <= 30 ? 'Strong resistance to echo chambers' : 
+                         metrics.polarizationIndex <= 60 ? 'Moderately influenced by algorithmic bias' :
+                         'Deep in echo chamber - severely polarized information diet'}
+                      </p>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="font-semibold">Critical Thinking</span>
+                        <span className={`font-bold ${getMetricColor(metrics.criticalThinking)}`}>
+                          {metrics.criticalThinking.toFixed(0)}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div 
+                          className={`h-3 rounded-full transition-all ${getMetricBgColor(metrics.criticalThinking)}`}
+                          style={{ width: `${metrics.criticalThinking}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-gray-600 mt-1">
+                        {metrics.criticalThinking >= 70 ? 'Strong analytical and evaluation skills' : 
+                         metrics.criticalThinking >= 40 ? 'Moderate critical thinking - needs development' :
+                         'Critically vulnerable to misinformation and manipulation'}
+                      </p>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="font-semibold">Perspective Diversity</span>
+                        <span className={`font-bold ${getMetricColor(metrics.diversityScore)}`}>
+                          {metrics.diversityScore.toFixed(0)}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div 
+                          className={`h-3 rounded-full transition-all ${getMetricBgColor(metrics.diversityScore)}`}
+                          style={{ width: `${metrics.diversityScore}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-gray-600 mt-1">
+                        {metrics.diversityScore >= 70 ? 'Exposed to wide range of viewpoints' : 
+                         metrics.diversityScore >= 40 ? 'Limited perspective diversity' :
+                         'Narrow information diet - filter bubble detected'}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                    <h3 className="font-semibold text-blue-900 mb-2">📊 Your Behavior Pattern Analysis:</h3>
+                    <p className="text-sm text-blue-800 mb-2">
+                      You interacted with {interactions.length} posts. Your primary content consumption was <strong>{mostConsumed?.[0] || 'varied'}</strong> content ({mostConsumed?.[1] || 0} posts).
+                    </p>
+                    <p className="text-sm text-blue-800">
+                      {avgScore >= 70 && "✅ You demonstrated strong digital literacy, actively sought diverse perspectives, and resisted algorithmic manipulation. This behavior pattern indicates high resilience to echo chambers and misinformation. Keep practicing conscious media consumption!"}
+                      {avgScore >= 40 && avgScore < 70 && "⚠️ You showed some vulnerability to algorithmic manipulation and echo chamber formation. Your content choices suggest susceptibility to engagement-optimized feeds. Consider being more intentional about seeking diverse viewpoints and fact-checking sensational claims."}
+                      {avgScore < 40 && "🚨 Your interaction pattern shows high susceptibility to echo chambers, misinformation, and shallow content. This is exactly how algorithms trap users in filter bubbles. The system has learned to show you emotionally engaging but intellectually shallow content. Critical intervention needed."}
+                    </p>
+                  </div>
+
+                  <div className="bg-purple-50 border-l-4 border-purple-500 p-4 mb-6">
+                    <h3 className="font-semibold text-purple-900 mb-2 flex items-center">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      Key Educational Insights:
+                    </h3>
+                    <ul className="text-sm text-purple-800 space-y-2">
+                      <li>• <strong>Algorithmic Amplification:</strong> Platforms show you MORE of what you click, creating self-reinforcing feedback loops</li>
+                      <li>• <strong>Engagement vs Truth:</strong> Algorithms optimize for your attention (profit), not your enlightenment or well-being</li>
+                      <li>• <strong>Cognitive Impact:</strong> Short-form, high-dopamine content measurably reduces attention span and critical thinking</li>
+                      <li>• <strong>Echo Chambers:</strong> Personalization creates filter bubbles that limit exposure to diverse perspectives</li>
+                      <li>• <strong>Digital Citizenship:</strong> Conscious, intentional content consumption is a skill that must be actively practiced</li>
+                    </ul>
+                  </div>
+
+                  {avgScore < 60 && (
+                    <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+                      <h3 className="font-semibold text-red-900 mb-2">⚠️ Recommendations for Improvement:</h3>
+                      <ul className="text-sm text-red-800 space-y-1">
+                        <li>• Actively seek content that challenges your existing views</li>
+                        <li>• Practice slow reading of long-form articles</li>
+                        <li>• Fact-check sensational claims before sharing</li>
+                        <li>• Follow accounts with diverse perspectives</li>
+                        <li>• Take regular breaks from social media</li>
+                        <li>• Engage with educational content that requires critical thinking</li>
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="flex gap-4">
+                    <button
+                      onClick={resetSimulation}
+                      className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition shadow-lg flex items-center justify-center"
+                    >
+                      <RefreshCw className="w-5 h-5 mr-2" />
+                      Try Again with Different Strategy
+                    </button>
+                  </div>
+
+                  <div className="mt-6 text-center text-xs text-gray-500">
+                    <p>This simulation demonstrates research findings on AI-mediated digital citizenship</p>
+                    <p className="mt-1">Based on: SAARC Youth Digital Engagement Study • Kartik Kashyap</p>
+                    <p className="mt-1 text-gray-400">Research Topic: AI-Mediated Digital Citizenship Among Youth in SAARC Nations</p>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
+          const unreadPosts = posts.filter(p => !p.read);
+
+          return (
+            <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-4 shadow-lg sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div>
+            <h1 className="text-xl font-bold">Your Personalized Social Feed</h1>
+            <p className="text-sm opacity-90">Stage {feedStage} • {interactions.length} posts consumed • {unreadPosts.length} new</p>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowReport(true)}
+              className="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition"
+            >
+              View Report
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Feed */}
+        <div className="lg:col-span-2 space-y-4">
+          {posts.map(post => (
+            <div
+              key={post.id}
+              onClick={() => !post.read && handlePostClick(post)}
+              className={`bg-white rounded-lg shadow p-4 transition ${
+                post.read 
+                  ? 'opacity-50 cursor-default' 
+                  : 'hover:shadow-lg hover:scale-[1.01] cursor-pointer border-2 border-transparent hover:border-purple-200'
+              }`}
+            >
+              <div className="flex items-start justify-between mb-2">
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full mr-3 flex items-center justify-center text-white font-bold">
+                    {post.author.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">{post.author}</p>
+                    <p className="text-xs text-gray-500">{Math.floor(Math.random() * 5) + 1}h ago</p>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  {post.isMisinfo && !post.read && (
+                    <span className="bg-red-100 text-red-600 text-xs px-2 py-1 rounded font-medium">
+                      ⚠️ Verify
+                    </span>
+                  )}
+                  {post.type === 'educational' && !post.read && (
+                    <span className="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded font-medium">
+                      📚 Thoughtful
+                    </span>
+                  )}
+                </div>
+              </div>
+              
+              <p className="text-gray-800 mb-3 leading-relaxed">{post.content}</p>
+              
+              <div className="flex items-center justify-between text-sm text-gray-500">
+                <span>{post.engagement}</span>
+                {!post.read && (
+                  <span className="text-purple-600 font-medium">Click to read →</span>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {unreadPosts.length === 0 && !showReport && (
+            <div className="bg-white rounded-lg shadow p-8 text-center">
+              <p className="text-gray-600 mb-4 text-lg">You've consumed all available content in your feed!</p>
+              <p className="text-gray-500 text-sm mb-6">
+                This is how algorithms work - they keep feeding you content based on your behavior. 
+                In reality, the feed never ends.
+              </p>
+              <button
+                onClick={() => setShowReport(true)}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transition shadow-lg"
+              >
+                View Final Report Card
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Metrics Sidebar */}
+        <div className="space-y-4">
+          <div className="bg-white rounded-lg shadow-lg p-5 sticky top-24">
+            <h3 className="font-bold text-gray-900 mb-4 flex items-center">
+              <Brain className="w-5 h-5 mr-2 text-purple-600" />
+              Live Cognitive Metrics
+            </h3>
+
+            <div className="space-y-4">
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm font-medium">Attention Span</span>
+                  <span className={`text-sm font-bold ${getMetricColor(metrics.attentionSpan)}`}>
+                    {metrics.attentionSpan.toFixed(0)}%
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full transition-all duration-500 ${getMetricBgColor(metrics.attentionSpan)}`}
+                    style={{ width: `${metrics.attentionSpan}%` }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm font-medium">Polarization</span>
+                  <span className={`text-sm font-bold ${getMetricColor(metrics.polarizationIndex, true)}`}>
+                    {metrics.polarizationIndex.toFixed(0)}%
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full transition-all duration-500 ${getMetricBgColor(metrics.polarizationIndex, true)}`}
+                    style={{ width: `${metrics.polarizationIndex}%` }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm font-medium">Critical Thinking</span>
+                  <span className={`text-sm font-bold ${getMetricColor(metrics.criticalThinking)}`}>
+                    {metrics.criticalThinking.toFixed(0)}%
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full transition-all duration-500 ${getMetricBgColor(metrics.criticalThinking)}`}
+                    style={{ width: `${metrics.criticalThinking}%` }}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className="flex justify-between mb-1">
+                  <span className="text-sm font-medium">Diversity Score</span>
+                  <span className={`text-sm font-bold ${getMetricColor(metrics.diversityScore)}`}>
+                    {metrics.diversityScore.toFixed(0)}%
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    className={`h-2 rounded-full transition-all duration-500 ${getMetricBgColor(metrics.diversityScore)}`}
+                    style={{ width: `${metrics.diversityScore}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <p className="text-xs text-gray-600 leading-relaxed">
+                These metrics update in real-time based on your content consumption patterns. 
+                The algorithm is learning your preferences and will adapt your feed accordingly.
+              </p>
+            </div>
+          </div>
+
+          {/* Intervention Alert */}
+          {showIntervention && (
+            <div className="bg-yellow-50 border-l-4 border-yellow-400 rounded-lg p-4 shadow-lg animate-pulse">
+              <div className="flex items-start">
+                <AlertTriangle className="w-5 h-5 text-yellow-600 mr-2 flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-semibold text-yellow-900 text-sm mb-1">
+                    Educational Intervention
+                  </h4>
+                  <p className="text-xs text-yellow-800 leading-relaxed">{interventionMessage}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Quick Tips */}
+          <div className="bg-blue-50 rounded-lg p-4 shadow">
+            <h4 className="font-semibold text-blue-900 text-sm mb-2">💡 Digital Citizenship Tips</h4>
+            <ul className="text-xs text-blue-800 space-y-1">
+              <li>• Question emotional content</li>
+              <li>• Seek diverse perspectives</li>
+              <li>• Verify before sharing</li>
+              <li>• Take breaks from feeds</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// export default EchoChamberSimulator;
+
+              
+        // const EchoChamberSimulator = () => {
+        //     return (
+        //         <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900 flex items-center justify-center p-4">
+        //             <div className="max-w-2xl bg-white rounded-2xl shadow-2xl p-8 text-center">
+        //                 <h1 className="text-3xl font-bold text-gray-900 mb-4">
+        //                     Echo Chamber Simulator
+        //                 </h1>
+        //                 <p className="text-lg text-gray-600 mb-6">
+        //                     AI-Mediated Digital Citizenship Lab for SAARC Youth
+        //                 </p>
+        //                 <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 text-left">
+        //                     <p className="text-sm text-blue-900">
+        //                         <strong>Note:</strong> This is a template file. To see the full simulator, 
+        //                         please copy the component code from <code>echo-chamber-simulator-static.jsx</code> 
+        //                         into this file where indicated above.
+        //                     </p>
+        //                 </div>
+        //                 <p className="text-gray-600 text-sm">
+        //                     Research by Kartik Kashyap • SAARC Internship Programme
+        //                 </p>
+        //             </div>
+        //         </div>
+        //     );
+        // };
+
+        // Render - ensure React is loaded and DOM is ready
+        if (typeof React !== 'undefined' && typeof ReactDOM !== 'undefined') {
+            const rootElement = document.getElementById('root');
+            if (rootElement) {
+                const root = ReactDOM.createRoot(rootElement);
+                root.render(<EchoChamberSimulator />);
+            } else {
+                console.error('Root element not found');
+            }
+        } else {
+            console.error('React or ReactDOM not loaded');
+        }
+    </script>
+</body>
+</html>

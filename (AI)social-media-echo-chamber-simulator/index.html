@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echo Chamber Simulator | Digital Lab</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @keyframes scan {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100vh); }
+      }
+      .animate-scan {
+        animation: scan 3s linear infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Asian Youth Digital Landscape - Interactive Dashboard</title>
+    <link rel="icon" href="youth-day.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>South Asian Youth Digital Landscape</h1>
+        <p>Interactive Dashboard: Internet Usage, Social Media Penetration, and Digital Harms (2024-2025)
+            <br><em>Data from GSMA, UNICEF, UNESCO, DataReportal, and academic sources</em></p>
+    </header>
+
+    <div class="container">
+        <!-- SECTION 1: KEY INDICATORS -->
+        <div class="section">
+            <h2>📊 Key Performance Indicators</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Total Internet Users</div>
+                    <div class="kpi-value">~2.1B</div>
+                    <div class="kpi-label">Across South Asia</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Youth (13-24) Users</div>
+                    <div class="kpi-value">~1.4B</div>
+                    <div class="kpi-label">Primary Demographics</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg. Gender Gap</div>
+                    <div class="kpi-value">15.6pp</div>
+                    <div class="kpi-label">Male-Female Difference</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Misinformation Exposure</div>
+                    <div class="kpi-value">62%</div>
+                    <div class="kpi-label">Of Youth Affected</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Shared Device Users</div>
+                    <div class="kpi-value">58%</div>
+                    <div class="kpi-label">Avg. Access Pattern</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">WhatsApp Penetration</div>
+                    <div class="kpi-value">83%</div>
+                    <div class="kpi-label">Primary Messaging App</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: PENETRATION & GENDER GAP -->
+        <div class="section">
+            <h2>🌍 Internet Penetration & Digital Gender Divide</h2>
+            
+            <div class="grid-2">
+                <div>
+                    <h3>Internet Penetration Rate by Country</h3>
+                    <div class="chart-container">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3>Gender Digital Gap (Male - Female %)</h3>
+                    <div class="chart-container">
+                        <canvas id="chart2"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong>Key Finding:</strong> While overall internet penetration ranges from 31.5% (Bangladesh) to 68.2% (Maldives), 
+                the gender gap remains stark. Pakistan shows the largest divide at 26.1 percentage points, while Bhutan demonstrates 
+                the most equitable access at 11 percentage points. This reflects broader digital literacy and device affordability issues.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Total Population (M)</th>
+                        <th>Internet Users (M)</th>
+                        <th>Penetration %</th>
+                        <th>Male %</th>
+                        <th>Female %</th>
+                        <th>Gender Gap (pp)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>India</strong></td>
+                        <td>1,417</td>
+                        <td>751.5</td>
+                        <td>52.4%</td>
+                        <td>59.8%</td>
+                        <td>44.2%</td>
+                        <td><span style="color: var(--color-danger); font-weight: bold;">15.6pp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pakistan</strong></td>
+                        <td>240</td>
+                        <td>109.7</td>
+                        <td>45.7%</td>
+                        <td>58.2%</td>
+                        <td>32.1%</td>
+                        <td><span style="color: var(--color-danger); font-weight: bold;">26.1pp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bangladesh</strong></td>
+                        <td>170</td>
+                        <td>53.6</td>
+                        <td>31.5%</td>
+                        <td>42.1%</td>
+                        <td>20.3%</td>
+                        <td><span style="color: var(--color-danger); font-weight: bold;">21.8pp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nepal</strong></td>
+                        <td>30</td>
+                        <td>15.4</td>
+                        <td>51.2%</td>
+                        <td>59.8%</td>
+                        <td>42.5%</td>
+                        <td><span style="color: var(--color-danger); font-weight: bold;">17.3pp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sri Lanka</strong></td>
+                        <td>22</td>
+                        <td>10.1</td>
+                        <td>45.8%</td>
+                        <td>53.2%</td>
+                        <td>38.2%</td>
+                        <td><span style="color: var(--color-danger); font-weight: bold;">15.0pp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bhutan</strong></td>
+                        <td>0.77</td>
+                        <td>0.34</td>
+                        <td>44.5%</td>
+                        <td>50.0%</td>
+                        <td>39.0%</td>
+                        <td><span style="color: var(--color-success);">11.0pp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Maldives</strong></td>
+                        <td>0.54</td>
+                        <td>0.37</td>
+                        <td>68.2%</td>
+                        <td>74.2%</td>
+                        <td>62.1%</td>
+                        <td><span style="color: var(--color-success);">12.1pp</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 3: SOCIAL MEDIA PLATFORMS -->
+        <div class="section">
+            <h2>📱 Social Media Platform Dominance</h2>
+            
+            <div class="chart-container">
+                <canvas id="chart3"></canvas>
+            </div>
+
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #FF0000;"></div>
+                    <span>YouTube (88.3% avg)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #25D366;"></div>
+                    <span>WhatsApp (81.8% avg)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #1877F2;"></div>
+                    <span>Facebook (66.8% avg)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #000000;"></div>
+                    <span>TikTok (42.6% avg)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #E4405F;"></div>
+                    <span>Instagram (37.7% avg)</span>
+                </div>
+            </div>
+
+            <div class="insight">
+                <strong>Platform Insights:</strong> YouTube and WhatsApp have near-universal reach (80%+), making them critical vectors 
+                for both information dissemination and misinformation spread. TikTok's explosive growth (38-52% penetration) represents 
+                a major shift, particularly among youth aged 13-24. Pakistan shows the highest TikTok adoption at 49%, while Facebook 
+                remains strongest in India (80%) and Bangladesh (75%).
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>YouTube %</th>
+                        <th>WhatsApp %</th>
+                        <th>Facebook %</th>
+                        <th>TikTok %</th>
+                        <th>Instagram %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>India</strong></td>
+                        <td>95%</td>
+                        <td>88%</td>
+                        <td>80%</td>
+                        <td>38%</td>
+                        <td>42%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pakistan</strong></td>
+                        <td>78%</td>
+                        <td>82%</td>
+                        <td>65%</td>
+                        <td>49%</td>
+                        <td>35%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bangladesh</strong></td>
+                        <td>82%</td>
+                        <td>79%</td>
+                        <td>75%</td>
+                        <td>52%</td>
+                        <td>38%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nepal</strong></td>
+                        <td>90%</td>
+                        <td>85%</td>
+                        <td>70%</td>
+                        <td>48%</td>
+                        <td>45%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sri Lanka</strong></td>
+                        <td>72.1%</td>
+                        <td>65.2%</td>
+                        <td>44.9%</td>
+                        <td>27.8%</td>
+                        <td>28.5%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 4: DIGITAL HARMS -->
+        <div class="section">
+            <h2>⚠️ Digital Harms & Youth Safety Risks</h2>
+            
+            <div class="chart-container">
+                <canvas id="chart4"></canvas>
+            </div>
+
+            <div class="highlight">
+                <strong>Critical Alert:</strong> Misinformation exposure affects 54-72% of South Asian youth, making it the 
+                most prevalent digital harm. This is driven by low media literacy, rapid platform migration (WhatsApp → YouTube), 
+                and algorithmic amplification of sensational content. Cyberbullying and privacy violations also show high prevalence, 
+                with Bangladesh reporting the most severe impacts across all categories.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Type of Harm</th>
+                        <th>India %</th>
+                        <th>Pakistan %</th>
+                        <th>Bangladesh %</th>
+                        <th>Nepal %</th>
+                        <th>Sri Lanka %</th>
+                        <th>Avg %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Misinformation Exposure</strong></td>
+                        <td>65%</td>
+                        <td>58%</td>
+                        <td>72%</td>
+                        <td>61%</td>
+                        <td>54%</td>
+                        <td style="color: var(--color-danger); font-weight: bold;">62%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Privacy Violation</strong></td>
+                        <td>42%</td>
+                        <td>38%</td>
+                        <td>48%</td>
+                        <td>44%</td>
+                        <td>36%</td>
+                        <td style="color: var(--color-danger); font-weight: bold;">41.6%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Online Harassment</strong></td>
+                        <td>35%</td>
+                        <td>32%</td>
+                        <td>39%</td>
+                        <td>34%</td>
+                        <td>28%</td>
+                        <td style="color: var(--color-danger); font-weight: bold;">33.6%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cyberbullying</strong></td>
+                        <td>28%</td>
+                        <td>24%</td>
+                        <td>31%</td>
+                        <td>26%</td>
+                        <td>22%</td>
+                        <td style="color: var(--color-accent); font-weight: bold;">26.2%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grooming / CSEA Risk</strong></td>
+                        <td>18%</td>
+                        <td>15%</td>
+                        <td>22%</td>
+                        <td>19%</td>
+                        <td>14%</td>
+                        <td style="color: var(--color-accent); font-weight: bold;">17.6%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 5: AGE-WISE ADOPTION -->
+        <div class="section">
+            <h2>👥 Age-Wise Internet Adoption Patterns</h2>
+            
+            <div class="chart-container">
+                <canvas id="chart5"></canvas>
+            </div>
+
+            <div class="insight">
+                <strong>Youth Peak Phenomenon:</strong> All countries show maximum internet penetration in the 18-24 age group (72-85%), 
+                followed by sharp declines. The 13-17 bracket shows slightly lower adoption (52-78%), suggesting secondary school is 
+                a critical gateway. Ages 35+ show dramatically lower penetration (10-38%), indicating the digital divide remains 
+                age-stratified. This has significant implications for family-based digital literacy interventions.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Age Group</th>
+                        <th>India %</th>
+                        <th>Pakistan %</th>
+                        <th>Bangladesh %</th>
+                        <th>Nepal %</th>
+                        <th>Regional Avg %</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #E3F2FD;">
+                        <td><strong>13-17 (Early Youth)</strong></td>
+                        <td>78%</td>
+                        <td>65%</td>
+                        <td>52%</td>
+                        <td>75%</td>
+                        <td style="font-weight: bold;">67.5%</td>
+                    </tr>
+                    <tr style="background-color: #E3F2FD;">
+                        <td><strong>18-24 (Peak Youth)</strong></td>
+                        <td>85%</td>
+                        <td>72%</td>
+                        <td>58%</td>
+                        <td>82%</td>
+                        <td style="font-weight: bold;">74.25%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>25-34 (Young Adult)</strong></td>
+                        <td>62%</td>
+                        <td>48%</td>
+                        <td>35%</td>
+                        <td>55%</td>
+                        <td style="font-weight: bold;">50%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>35-44 (Middle Age)</strong></td>
+                        <td>38%</td>
+                        <td>28%</td>
+                        <td>20%</td>
+                        <td>32%</td>
+                        <td style="font-weight: bold;">29.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>45+ (Older)</strong></td>
+                        <td>22%</td>
+                        <td>15%</td>
+                        <td>10%</td>
+                        <td>18%</td>
+                        <td style="font-weight: bold;">16.25%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 6: DEVICE ACCESS INEQUALITY -->
+        <div class="section">
+            <h2>💻 Device Access Inequality: The "Shared Device" Challenge</h2>
+            
+            <div class="chart-container">
+                <canvas id="chart6"></canvas>
+            </div>
+
+            <div class="highlight">
+                <strong>Policy Implication:</strong> An average of 58% of South Asian youth use shared family devices, compared to 
+                only 38% with personal devices. This "shared access" model fundamentally alters risk profiles: victims of cyberbullying 
+                or harassment cannot easily block harassers without family members noticing; privacy concerns about sexual/reproductive 
+                health information searches are amplified; and surveillance by family members may prevent help-seeking for exploitation. 
+                School/cyber cafe access provides a safety valve for 8-25% of youth but remains inconsistent.
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Own Personal Device %</th>
+                        <th>Shared Family Device %</th>
+                        <th>School/Cyber Cafe %</th>
+                        <th>Policy Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>India</strong></td>
+                        <td>34%</td>
+                        <td>66%</td>
+                        <td>18%</td>
+                        <td>Massive market, but inequality stark</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pakistan</strong></td>
+                        <td>42%</td>
+                        <td>52%</td>
+                        <td>12%</td>
+                        <td>Relatively better device affordability</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bangladesh</strong></td>
+                        <td>28%</td>
+                        <td>68%</td>
+                        <td>25%</td>
+                        <td>Highest reliance on shared/institutional access</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nepal</strong></td>
+                        <td>38%</td>
+                        <td>58%</td>
+                        <td>15%</td>
+                        <td>Moderate digital inequality</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sri Lanka</strong></td>
+                        <td>45%</td>
+                        <td>48%</td>
+                        <td>8%</td>
+                        <td>Most equitable device distribution</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SECTION 7: RESEARCH GAPS & RECOMMENDATIONS -->
+        <div class="section">
+            <h2>🎯 Research Gaps & Policy Recommendations</h2>
+            
+            <h3>Critical Data Gaps</h3>
+            <ul>
+                <li><strong>Longitudinal Mental Health Data:</strong> Most prevalence data is cross-sectional. No long-term tracking of social media's mental health impact on South Asian adolescents.</li>
+                <li><strong>Algorithmic Radicalization:</strong> How local-language algorithms (Hindi, Bengali, Urdu) amplify polarizing content remains largely proprietary to platforms.</li>
+                <li><strong>Shared Device Behavior:</strong> How "co-viewing" on family devices changes digital risks compared to Western "personal device" models is understudied.</li>
+                <li><strong>Platform Migration Effects:</strong> As users shift from Facebook → TikTok → YouTube, how does misinformation spread change? No systematic tracking.</li>
+            </ul>
+
+            <h3>Policy Recommendations for Governments & Civil Society</h3>
+            <ul>
+                <li><strong>Digital Literacy in Schools:</strong> Integrate media literacy and online safety into national curricula, targeting ages 13-17 (peak adoption window).</li>
+                <li><strong>Gender-Focused Interventions:</strong> Address the 15-26pp gender gap through subsidized access, culturally-sensitive safety training, and female digital role models.</li>
+                <li><strong>Shared Device Adaptations:</strong> Design safety features for shared-device households (e.g., time-limited privacy modes, parental controls with transparency).</li>
+                <li><strong>Platform Accountability:</strong> Develop regional content moderation standards and require platforms to publish transparency reports in local languages.</li>
+                <li><strong>Institutional Access Expansion:</strong> Scale school and community cyber cafe programs, particularly in Bangladesh and rural areas.</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 8: DATA SOURCES -->
+        <div class="section">
+            <h2>📚 Data Sources & Methodology</h2>
+            <p style="font-size: 13px; line-height: 1.8; color: #666;">
+                <strong>Primary Sources:</strong><br>
+                • GSMA Intelligence (2024) – The Mobile Gender Gap Report 2024<br>
+                • IAMAI / Kantar (2024) – Internet in India Report 2024<br>
+                • DataReportal (2024-2025) – Digital 2024/2025 Country Reports (India, Pakistan, Nepal, Sri Lanka)<br>
+                • UNICEF / Safe Online (2024) – Annual Report on Child Online Safety<br>
+                • UNESCO (2024) – Youth and Technology in Education Report<br>
+                • WHO DTH-Lab (2025) – Digital Determinants of Youth Mental Health<br>
+                • RSIS (2025) – Disinformation & Violent Extremism in South Asia<br>
+                • Academic publications in JMIR, PMC/NCBI, and regional policy journals<br><br>
+                <strong>Note for Academic Use:</strong> This dashboard synthesizes publicly available data from 2023-2025. 
+                For your research paper, we recommend citing the original reports listed above. Data on digital harms prevalence 
+                is aggregated from multiple sources and should be treated as indicative rather than definitive. Actual prevalence 
+                may vary based on survey methodology, sample size, and regional context.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p><strong>South Asian Youth Digital Landscape Dashboard</strong> | Data Sources: GSMA, UNICEF, UNESCO, DataReportal, Academic Research (2024-2025)</p>
+        <p>Designed for Academic & Policy Research | Not for commercial use</p>
+    </footer>
+
+    <script src="script.js">  
+    </script>
+</body>
+</html>

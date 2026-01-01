@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centrifuge: Mathematical Echo Chamber & Polarization Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="echo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Centrifuge: Echo Chamber & Polarization Simulator</h1>
+            <p class="subtitle">Interactive mathematical demonstration of how algorithmic amplification, filter bubbles, and echo chambers emerge in social networks</p>
+        </header>
+
+        <div class="controls-section">
+            <h2 style="margin-bottom: 20px; font-size: 18px;">Simulation Parameters</h2>
+            
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label for="num-agents">Number of Users: <span id="num-agents-value">100</span></label>
+                    <input type="range" id="num-agents" min="20" max="300" value="100" step="10">
+                </div>
+
+                <div class="control-group">
+                    <label for="confidence-threshold">Confidence Threshold (Tolerance): <span id="confidence-value">0.30</span></label>
+                    <input type="range" id="confidence-threshold" min="0.1" max="0.8" value="0.30" step="0.05">
+                    <div class="value-display">Lower = more polarization | Higher = more consensus</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="algo-strength">Algorithm Amplification: <span id="algo-value">0.30</span></label>
+                    <input type="range" id="algo-strength" min="0" max="1" value="0.30" step="0.1">
+                    <div class="value-display">0 = no amplification | 1 = maximum amplification</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="homophily">Network Homophily (Friend-Similarity): <span id="homophily-value">0.40</span></label>
+                    <input type="range" id="homophily" min="0" max="1" value="0.40" step="0.1">
+                    <div class="value-display">How much users connect with similar others</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="iterations">Simulation Steps: <span id="iterations-value">50</span></label>
+                    <input type="range" id="iterations" min="10" max="200" value="50" step="10">
+                    <div class="value-display">Time periods to simulate</div>
+                </div>
+
+                <div class="control-group">
+                    <label for="scenario">Scenario</label>
+                    <select id="scenario">
+                        <option value="baseline">Baseline (All Mechanisms)</option>
+                        <option value="no-algo">No Algorithm (Cognitive + Social Only)</option>
+                        <option value="algo-only">Algorithm Only (No Social Effects)</option>
+                        <option value="high-polarization">High Polarization (Extreme Settings)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn-primary" id="run-simulation">▶ Run Simulation</button>
+                <button class="btn-secondary" id="reset-params">Reset to Defaults</button>
+            </div>
+        </div>
+
+        <div id="simulation-status" class="simulation-status"></div>
+
+        <div class="tabs">
+            <button class="tab-button active" data-tab="overview">Overview</button>
+            <button class="tab-button" data-tab="distribution">Opinion Distribution</button>
+            <button class="tab-button" data-tab="metrics">Detailed Metrics</button>
+            <button class="tab-button" data-tab="scenarios">Compare Scenarios</button>
+        </div>
+
+        <div id="overview" class="tab-content active">
+            <div class="scenario-description" id="scenario-desc"></div>
+            <div class="content-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Opinion Clustering Over Time</div>
+                    <canvas id="clustering-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Polarization Trend</div>
+                    <canvas id="polarization-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Final Polarization Index</div>
+                    <div><span class="metric-value" id="final-polarization">0.00</span><span class="metric-unit">%</span></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Opinion Clusters (Groups)</div>
+                    <div><span class="metric-value" id="num-clusters">1</span></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Average Network Heterogeneity</div>
+                    <div><span class="metric-value" id="heterogeneity">0.00</span><span class="metric-unit">%</span></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Information Diversity Reduction</div>
+                    <div><span class="metric-value" id="diversity-loss">0.00</span><span class="metric-unit">%</span></div>
+                </div>
+            </div>
+
+            <div class="insights-box">
+                <div class="insights-title">Key Findings</div>
+                <div class="insight-text" id="insights-text">Run a simulation to see insights about polarization dynamics.</div>
+            </div>
+        </div>
+
+        <div id="distribution" class="tab-content">
+            <div class="content-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Initial Opinion Distribution</div>
+                    <canvas id="initial-dist-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Final Opinion Distribution</div>
+                    <canvas id="final-dist-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="metrics" class="tab-content">
+            <div class="content-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Within-Group vs Between-Group Opinion Distance</div>
+                    <canvas id="cohesion-chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Echo Chamber Strength</div>
+                    <canvas id="echo-chamber-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="scenarios" class="tab-content">
+            <div class="chart-container" style="height: 500px;">
+                <div class="chart-title">Comparison: Different Conditions</div>
+                <canvas id="scenario-comparison-chart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
