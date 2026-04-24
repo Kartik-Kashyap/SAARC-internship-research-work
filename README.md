@@ -3,7 +3,9 @@
 This repository contains research artifacts, interactive dashboards, visualization, and simulation systems developed as part of an academic internship carried out at SAARC focused on AI-mediated digital citizenship in South Asia.
 
 > [!NOTE]
-> README for each project is available in their respective folder.
+> - README for each project is available in their respective directory.
+> 
+> - Click here to read my [full research report](latex-report/saarc-report-final.pdf)
 
 ## Contents
 - AI-based social media feed simulators
